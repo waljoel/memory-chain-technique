@@ -1,0 +1,133 @@
+import React, { useState, useEffect } from 'react';
+import { Button } from '@/components/ui/button';
+import { Textarea } from '@/components/ui/textarea';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+
+const poolPalabras = [
+  "sol", "luna", "estrella", "planeta", "cometa", "galaxia", "astronauta", "cohete", "satelite", "nave",
+  "manzana", "banana", "cereza", "durazno", "elefante", "foca", "gato", "hipopotamo", "iguana", "jirafa",
+  "kiwi", "limon", "mango", "naranja", "oso", "pera", "queso", "raton", "serpiente", "tigre",
+  "uva", "vaca", "sandia", "xilofono", "yak", "cebra", "arbol", "bosque", "cactus", "desierto",
+  "escuela", "fuente", "granja", "hotel", "iglesia", "jardin", "kiosco", "lago", "montana", "nube",
+  "oceano", "parque", "quebrada", "rio", "selva", "tren", "universidad", "volcan", "windsurf", "yate",
+  "zapato", "avion", "barco", "coche", "dirigible", "escalera", "faro", "globo", "helicoptero", "isla",
+  "juguete", "kart", "lampara", "mesa", "nevera", "olla", "puerta", "quiosco", "reloj", "silla",
+  "televisor", "unicornio", "ventana", "wifi", "xilofono", "yoga", "zepelin", "anillo", "bolso", "collar",
+  "dado", "espejo", "flor", "gafas", "hilo", "iman", "jabon", "koala", "libro", "moneda",
+  "nido", "oveja", "pajaro", "queso", "rana", "sombrero", "telefono", "una", "vela", "whisky",
+  "xilofono", "yoyo", "zanahoria", "arcoiris", "bicicleta", "camello", "dinosaurio", "elefante", "foca", "gorila",
+  "hormiga", "iguana", "jaguar", "koala", "leopardo", "mariposa", "nutria", "orangutan", "pinguino", "quokka",
+  "rinoceronte", "serpiente", "tortuga", "urraca", "vicuna", "wombat", "yegua", "zorro", "abeja", "ballena",
+  "cocodrilo", "delfin", "erizo", "flamenco", "gaviota", "hipopotamo", "ibis", "jabali", "kiwi", "lemur",
+  "medusa", "narval", "oso", "panda", "quetzal", "rana", "sapo", "tiburon", "urraca", "vaca",
+  "walabi", "perro", "yak", "zorrillo", "aguila", "buho", "canguro", "dromedario", "elefante", "faisan",
+  "gacela", "hiena", "impala", "jirafa", "koala", "lemur", "mapache", "nutria", "mono", "oso",
+  "puma", "quokka", "rata", "suricata", "tapir", "uakari", "vicuna", "wombat", "xilofono", "yak",
+  "zorro", "antilope", "bisonte", "camaleon", "dingo", "elefante", "flamenco", "gorila", "hipopotamo", "iguana",
+  "jaguar", "koala", "leon", "mono", "venado", "orangutan", "panda", "quetzal", "rinoceronte", "serpiente"
+];
+
+export default function JuegoMemoriaPalabras() {
+  const [palabras, setPalabras] = useState([]);
+  const [historia, setHistoria] = useState('');
+  const [puntuacion, setPuntuacion] = useState(0);
+  const [juegoComenzado, setJuegoComenzado] = useState(false);
+  const [juegoTerminado, setJuegoTerminado] = useState(false);
+
+  useEffect(() => {
+    reiniciarJuego();
+  }, []);
+
+  const seleccionarPalabrasAleatorias = () => {
+    const palabrasAleatorias = [];
+    const copiaPool = [...poolPalabras];
+    for (let i = 0; i < 10; i++) {
+      const indiceAleatorio = Math.floor(Math.random() * copiaPool.length);
+      palabrasAleatorias.push(copiaPool.splice(indiceAleatorio, 1)[0]);
+    }
+    return palabrasAleatorias;
+  };
+
+  const reiniciarJuego = () => {
+    const nuevasPalabras = seleccionarPalabrasAleatorias();
+    setPalabras(nuevasPalabras);
+    setHistoria('');
+    setPuntuacion(0);
+    setJuegoComenzado(false);
+    setJuegoTerminado(false);
+  };
+
+  const comenzarJuego = () => {
+    setJuegoComenzado(true);
+  };
+
+  const verificarHistoria = () => {
+    const palabrasHistoria = historia.toLowerCase().split(/\s+/);
+    let puntosActuales = 0;
+    
+    for (let i = 0; i < palabras.length; i++) {
+      const indice = palabrasHistoria.findIndex(palabra => palabra.toLowerCase() === palabras[i].toLowerCase());
+      if (indice !== -1) {
+        puntosActuales++;
+        palabrasHistoria.splice(0, indice + 1);
+      } else {
+        break;
+      }
+    }
+    
+    setPuntuacion(puntosActuales);
+    setJuegoTerminado(true);
+  };
+
+  return (
+    <Card className="w-full max-w-3xl mx-auto bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-300">
+      <CardHeader className="bg-yellow-300 rounded-t-lg">
+        <CardTitle className="text-4xl font-bold text-center text-purple-700">Juego de Memoria de Palabras</CardTitle>
+      </CardHeader>
+      <CardContent className="p-6">
+        {!juegoComenzado && !juegoTerminado && (
+          <div className="text-center">
+            <p className="mb-6 text-2xl font-semibold text-blue-700">¡Memoriza estas palabras locas y crea una historia divertida!</p>
+            <p className="mb-8 text-3xl font-bold text-green-600">{palabras.join(' - ')}</p>
+            <Button 
+              onClick={comenzarJuego}
+              className="text-xl py-3 px-6 bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 text-white font-bold rounded-full transform transition duration-200 hover:scale-105"
+            >
+              ¡Comenzar el juego!
+            </Button>
+          </div>
+        )}
+        {juegoComenzado && !juegoTerminado && (
+          <div className="text-center">
+            <p className="mb-6 text-2xl font-semibold text-blue-700">Escribe tu historia loca usando las palabras que memorizaste:</p>
+            <Textarea
+              value={historia}
+              onChange={(e) => setHistoria(e.target.value)}
+              placeholder="Érase una vez..."
+              className="mb-6 text-xl p-4 h-60 border-4 border-purple-400 rounded-xl focus:border-pink-500 focus:ring focus:ring-pink-200 focus:ring-opacity-50"
+            />
+            <Button 
+              onClick={verificarHistoria}
+              className="text-xl py-3 px-6 bg-gradient-to-r from-purple-400 to-pink-500 hover:from-green-500 hover:to-blue-500 text-white font-bold rounded-full transform transition duration-200 hover:scale-105"
+            >
+              ¡Verificar mi historia!
+            </Button>
+          </div>
+        )}
+        {juegoTerminado && (
+          <div className="text-center">
+            <p className="mb-6 text-3xl font-bold text-purple-700">¡Juego terminado!</p>
+            <p className="mb-6 text-4xl font-extrabold text-pink-600">Tu puntuación es: {puntuacion}</p>
+            <p className="mb-8 text-2xl font-semibold text-blue-700">Las palabras eran: {palabras.join(' - ')}</p>
+            <Button 
+              onClick={reiniciarJuego}
+              className="text-xl py-3 px-6 bg-gradient-to-r from-yellow-400 to-red-500 hover:from-green-500 hover:to-blue-500 text-white font-bold rounded-full transform transition duration-200 hover:scale-105"
+            >
+              ¡Jugar de nuevo!
+            </Button>
+          </div>
+        )}
+      </CardContent>
+    </Card>
+  );
+}
