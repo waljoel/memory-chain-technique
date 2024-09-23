@@ -198,33 +198,34 @@
             return palabra.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
         }
 
-        function verificarHistoria() {
-            const historia = document.getElementById('historia').value;
-            const palabrasHistoria = historia.split(/\s+/);
-            let puntuacion = 0;
-            let indicePalabraActual = 0;
 
-            const palabrasSeleccionadasNormalizadas = palabrasSeleccionadas.map(normalizarPalabra);
-
-            for (let palabraHistoria of palabrasHistoria) {
-                const palabraNormalizada = normalizarPalabra(palabraHistoria);
-                
-                if (palabraNormalizada === palabrasSeleccionadasNormalizadas[indicePalabraActual]) {
-                    puntuacion++;
-                    indicePalabraActual++;
-                }
-
-                if (indicePalabraActual === palabrasSeleccionadasNormalizadas.length) {
-                    break;
-                }
-            }
-
-            document.getElementById('puntuacion').textContent = `Tu puntuación es: ${puntuacion}`;
-            document.getElementById('palabrasFinales').textContent = `Las palabras eran: ${palabrasSeleccionadas.join(' - ')}`;
-            document.getElementById('juego').style.display = 'none';
-            document.getElementById('final').style.display = 'block';
-        }
+       function verificarHistoria() {
+        const historia = document.getElementById('historia').value;
+        const palabrasHistoria = historia.split(/\s+/);
         
+        const palabrasSeleccionadasNormalizadas = palabrasSeleccionadas.map(normalizarPalabra);
+        const palabrasHistoriaNormalizadas = palabrasHistoria.map(normalizarPalabra);
+
+        // Filtrar las palabras de la historia
+        const palabrasFiltradas = palabrasHistoriaNormalizadas.filter(palabra => 
+            palabrasSeleccionadasNormalizadas.includes(palabra)
+        );
+
+        // Calcular la puntuación
+        let puntuacion = 0;
+        for (let i = 0; i < palabrasFiltradas.length; i++) {
+            if (palabrasFiltradas[i] === palabrasSeleccionadasNormalizadas[i]) {
+                puntuacion++;
+            } else {
+                break;
+            }
+        }
+
+        document.getElementById('puntuacion').textContent = `Tu puntuación es: ${puntuacion}`;
+        document.getElementById('palabrasFinales').textContent = `Las palabras eran: ${palabrasSeleccionadas.join(' - ')}`;
+        document.getElementById('juego').style.display = 'none';
+        document.getElementById('final').style.display = 'block';
+    }     
         // Iniciar el juego
         reiniciarJuego();
     </script>
