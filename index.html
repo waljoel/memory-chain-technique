@@ -212,10 +212,6 @@
                 if (palabraNormalizada === palabrasSeleccionadasNormalizadas[indicePalabraActual]) {
                     puntuacion++;
                     indicePalabraActual++;
-                } else if (indicePalabraActual > 0) {
-                    // Si ya hemos encontrado al menos una palabra y la siguiente no coincide,
-                    // terminamos la verificación
-                    break;
                 }
 
                 if (indicePalabraActual === palabrasSeleccionadasNormalizadas.length) {
