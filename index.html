@@ -202,21 +202,20 @@
             const historia = document.getElementById('historia').value;
             const palabrasHistoria = historia.split(/\s+/);
             let puntuacion = 0;
-            let palabrasEncontradas = [];
+            let indicePalabraActual = 0;
 
             const palabrasSeleccionadasNormalizadas = palabrasSeleccionadas.map(normalizarPalabra);
 
             for (let palabraHistoria of palabrasHistoria) {
                 const palabraNormalizada = normalizarPalabra(palabraHistoria);
-                const indice = palabrasSeleccionadasNormalizadas.indexOf(palabraNormalizada);
                 
-                if (indice !== -1 && !palabrasEncontradas.includes(indice)) {
+                if (palabraNormalizada === palabrasSeleccionadasNormalizadas[indicePalabraActual]) {
                     puntuacion++;
-                    palabrasEncontradas.push(indice);
-                }
+                    indicePalabraActual++;
 
-                if (palabrasEncontradas.length === palabrasSeleccionadas.length) {
-                    break;
+                    if (indicePalabraActual === palabrasSeleccionadasNormalizadas.length) {
+                        break;
+                    }
                 }
             }
 
