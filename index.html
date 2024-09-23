@@ -120,28 +120,53 @@
 
     <script>
         const poolPalabras = [
-            "sol", "luna", "estrella", "planeta", "cometa", "galaxia", "astronauta", "cohete", "satelite", "nave",
-            "manzana", "banana", "cereza", "durazno", "elefante", "foca", "gato", "hipopotamo", "iguana", "jirafa",
-            "kiwi", "limon", "mango", "naranja", "oso", "pera", "queso", "raton", "serpiente", "tigre",
-            "uva", "vaca", "sandia", "xilofono", "yak", "cebra", "arbol", "bosque", "cactus", "desierto",
-            "escuela", "fuente", "granja", "hotel", "iglesia", "jardin", "kiosco", "lago", "montana", "nube",
-            "oceano", "parque", "quebrada", "rio", "selva", "tren", "universidad", "volcan", "windsurf", "yate",
-            "zapato", "avion", "barco", "coche", "dirigible", "escalera", "faro", "globo", "helicoptero", "isla",
-            "juguete", "kart", "lampara", "mesa", "nevera", "olla", "puerta", "quiosco", "reloj", "silla",
-            "televisor", "unicornio", "ventana", "wifi", "xilofono", "yoga", "zepelin", "anillo", "bolso", "collar",
-            "dado", "espejo", "flor", "gafas", "hilo", "iman", "jabon", "koala", "libro", "moneda",
-            "nido", "oveja", "pajaro", "queso", "rana", "sombrero", "telefono", "una", "vela", "whisky",
-            "xilofono", "yoyo", "zanahoria", "arcoiris", "bicicleta", "camello", "dinosaurio", "elefante", "foca", "gorila",
-            "hormiga", "iguana", "jaguar", "koala", "leopardo", "mariposa", "nutria", "orangutan", "pinguino", "quokka",
-            "rinoceronte", "serpiente", "tortuga", "urraca", "vicuna", "wombat", "yegua", "zorro", "abeja", "ballena",
-            "cocodrilo", "delfin", "erizo", "flamenco", "gaviota", "hipopotamo", "ibis", "jabali", "kiwi", "lemur",
-            "medusa", "narval", "oso", "panda", "quetzal", "rana", "sapo", "tiburon", "urraca", "vaca",
-            "walabi", "perro", "yak", "zorrillo", "aguila", "buho", "canguro", "dromedario", "elefante", "faisan",
-            "gacela", "hiena", "impala", "jirafa", "koala", "lemur", "mapache", "nutria", "mono", "oso",
-            "puma", "quokka", "rata", "suricata", "tapir", "uakari", "vicuna", "wombat", "xilofono", "yak",
-            "zorro", "antilope", "bisonte", "camaleon", "dingo", "elefante", "flamenco", "gorila", "hipopotamo", "iguana",
-            "jaguar", "koala", "leon", "mono", "venado", "orangutan", "panda", "quetzal", "rinoceronte", "serpiente"
-        ];
+  "lentes", "escalera", "rojo", "perro", "mesa", "casa", "laguna", "herramienta", "sombrero",
+  "arbol", "flor", "pelota", "libro", "lapiz", "escuela", "nube", "sol", "luna", "estrella",
+  "coche", "bicicleta", "tren", "barco", "avion", "parque", "playa", "montaña", "rio", "mar",
+  "pez", "pajaro", "gato", "conejo", "elefante", "jirafa", "leon", "tigre", "mono", "oso",
+  "cama", "silla", "sofa", "armario", "cocina", "baño", "jardin", "ventana", "puerta", "techo",
+  "piso", "pared", "tele", "radio", "telefono", "reloj", "camara", "computadora", "tablet", "juguete",
+  "muñeca", "peluche", "rompecabezas", "lego", "pintura", "dibujo", "musica", "cancion", "baile", "deporte",
+  "futbol", "basquet", "tenis", "natacion", "correr", "saltar", "nadar", "volar", "caminar", "dormir",
+  "comer", "beber", "reir", "llorar", "hablar", "escuchar", "mirar", "tocar", "oler", "gustar",
+  "amar", "odiar", "pensar", "soñar", "jugar", "trabajar", "estudiar", "aprender", "enseñar", "ayudar",
+  "zapato", "camisa", "pantalon", "vestido", "falda", "gorro", "guante", "bufanda", "abrigo", "calcetín",
+  "manzana", "banana", "naranja", "uva", "fresa", "melon", "sandia", "piña", "limon", "tomate",
+  "lechuga", "zanahoria", "papa", "cebolla", "ajo", "arroz", "pasta", "pan", "queso", "leche",
+  "agua", "jugo", "refresco", "cafe", "te", "chocolate", "helado", "pastel", "galleta", "caramelo",
+  "hamburguesa", "pizza", "sopa", "ensalada", "carne", "pollo", "pescado", "huevo", "sal", "azucar",
+  "cuchara", "tenedor", "cuchillo", "plato", "vaso", "taza", "olla", "sarten", "horno", "nevera",
+  "lavar", "planchar", "coser", "barrer", "limpiar", "ordenar", "cocinar", "comprar", "vender", "pagar",
+  "dinero", "moneda", "billete", "banco", "tienda", "supermercado", "farmacia", "hospital", "policia", "bombero",
+  "doctor", "enfermera", "maestro", "alumno", "amigo", "familia", "mama", "papa", "hermano", "hermana",
+  "abuelo", "abuela", "tio", "tia", "primo", "prima", "bebe", "niño", "joven", "adulto",
+  "anciano", "cumpleaños", "fiesta", "regalo", "globo", "pastel", "vela", "piñata", "dulce", "sorpresa",
+  "alegria", "tristeza", "enojo", "miedo", "calma", "fuerza", "paz", "amor", "amistad", "respeto",
+  "honestidad", "valentia", "generosidad", "paciencia", "creatividad", "imaginacion", "curiosidad", "inteligencia", "sabiduria", "bondad",
+  "mapa", "brujula", "tesoro", "pirata", "astronauta", "dinosaurio", "robot", "superhéroe", "princesa", "dragon",
+  "castillo", "bosque", "desierto", "cueva", "isla", "volcan", "arcoiris", "trueno", "rayo", "viento",
+  "nieve", "hielo", "fuego", "tierra", "aire", "metal", "madera", "papel", "tijera", "pegamento",
+  "pincel", "crayon", "marcador", "borrador", "regla", "mochila", "cuaderno", "calendario", "reloj", "despertador",
+  "telefono", "camara", "pelicula", "teatro", "circo", "zoologico", "acuario", "museo", "biblioteca", "cine",
+  "estadio", "gimnasio", "piscina", "playa", "montaña", "campo", "granja", "huerta", "invernadero", "jardineria",
+  "flor", "arbusto", "hierba", "hoja", "rama", "tronco", "raiz", "semilla", "fruto", "verdura",
+  "insecto", "mariposa", "abeja", "hormiga", "araña", "mosca", "mosquito", "caracol", "tortuga", "rana",
+  "sapo", "lagarto", "serpiente", "cocodrilo", "delfin", "ballena", "tiburon", "pulpo", "cangrejo", "estrella",
+  "nube", "lluvia", "granizo", "tornado", "huracan", "terremoto", "tsunami", "avalancha", "erupcion", "eclipse",
+  "continente", "pais", "ciudad", "pueblo", "calle", "avenida", "plaza", "parque", "edificio", "rascacielos",
+  "puente", "tunel", "carretera", "autopista", "semaforo", "señal", "mapa", "brujula", "gps", "viaje",
+  "vacaciones", "camping", "picnic", "excursion", "aventura", "descubrimiento", "invencion", "experimento", "ciencia", "historia",
+  "geografia", "matematicas", "lenguaje", "arte", "musica", "danza", "teatro", "cine", "fotografia", "escultura",
+  "pintura", "dibujo", "collage", "origami", "tejido", "costura", "ceramica", "joyeria", "maquillaje", "peluqueria",
+  "deporte", "ejercicio", "yoga", "meditacion", "relajacion", "masaje", "spa", "salud", "medicina", "vitamina",
+  "higiene", "cepillo", "jabon", "champu", "toalla", "peine", "espejo", "perfume", "desodorante", "crema",
+  "mueble", "alfombra", "cortina", "almohada", "sabana", "cobija", "lampara", "cuadro", "reloj", "espejo",
+  "jarron", "planta", "mascota", "acuario", "pecera", "jaula", "correa", "juguete", "comida", "galleta",
+  "hueso", "veterinario", "peluqueria", "parque", "pelota", "frisbee", "columpio", "tobogan", "carrusel", "patineta",
+  "patines", "monopatín", "cometa", "burbujas", "globo", "ajedrez", "domino", "cartas", "dado", "monopoly",
+  "scrabble", "jenga", "rompecabezas", "sudoku", "crucigrama", "sopa", "laberinto", "acertijo", "adivinanza", "chiste",
+  "broma", "magia", "truco", "ilusion", "mago", "payaso", "malabarista", "acrobata", "equilibrista", "trapecista"
+];
 
         let palabrasSeleccionadas = [];
 
@@ -169,17 +194,28 @@
             document.getElementById('juego').style.display = 'block';
         }
 
+        function normalizarPalabra(palabra) {
+            return palabra.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        }
+
         function verificarHistoria() {
-            const historia = document.getElementById('historia').value.toLowerCase();
+            const historia = document.getElementById('historia').value;
             const palabrasHistoria = historia.split(/\s+/);
             let puntuacion = 0;
+            let palabrasEncontradas = [];
 
-            for (let i = 0; i < palabrasSeleccionadas.length; i++) {
-                const indice = palabrasHistoria.findIndex(palabra => palabra.toLowerCase() === palabrasSeleccionadas[i].toLowerCase());
-                if (indice !== -1) {
+            const palabrasSeleccionadasNormalizadas = palabrasSeleccionadas.map(normalizarPalabra);
+
+            for (let palabraHistoria of palabrasHistoria) {
+                const palabraNormalizada = normalizarPalabra(palabraHistoria);
+                const indice = palabrasSeleccionadasNormalizadas.indexOf(palabraNormalizada);
+                
+                if (indice !== -1 && !palabrasEncontradas.includes(indice)) {
                     puntuacion++;
-                    palabrasHistoria.splice(0, indice + 1);
-                } else {
+                    palabrasEncontradas.push(indice);
+                }
+
+                if (palabrasEncontradas.length === palabrasSeleccionadas.length) {
                     break;
                 }
             }
